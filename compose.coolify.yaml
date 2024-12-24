@@ -1,9 +1,8 @@
 services:
     wordpress:
         image: wordpress
-        ports:
-            - 9000:80
         environment:
+            - SERVICE_FQDN_WORDPRESS_80
             - WORDPRESS_DB_HOST=db
             - WORDPRESS_DB_USER=${DB_USER}
             - WORDPRESS_DB_PASSWORD=${DB_PASS}
@@ -25,12 +24,9 @@ services:
             - MARIADB_PASSWORD=${DB_PASS}
     db_admin:
         image: phpmyadmin
-        ports:
-            - 9001:80
         environment:
+            - SERVICE_FQDN_DB_ADMIN_80
             - PMA_HOST=db
-            - PMA_USER=${DB_USER}
-            - PMA_PASSWORD=${DB_PASS}
         depends_on:
             - db
 
