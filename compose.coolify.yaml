@@ -3,10 +3,10 @@ services:
         image: wordpress
         environment:
             - SERVICE_FQDN_WORDPRESS_80
-            - WORDPRESS_DB_HOST=db
+            - WORDPRESS_DB_HOST=${DB_HOST}
             - WORDPRESS_DB_USER=${DB_USER}
             - WORDPRESS_DB_PASSWORD=${DB_PASS}
-            - WORDPRESS_DB_NAME=wordpress
+            - WORDPRESS_DB_NAME=${DB_NAME}
         volumes:
             - wp-content:/var/www/html/wp-content
             - wp-dconf/:/usr/local/etc/php/conf.d
@@ -19,14 +19,14 @@ services:
             - db_data:/var/lib/mysql
         environment:
             - MARIADB_ROOT_PASSWORD=${DB_PASS_ROOT}
-            - MARIADB_DATABASE=wordpress
+            - MARIADB_DATABASE=${DB_NAME}
             - MARIADB_USER=${DB_USER}
             - MARIADB_PASSWORD=${DB_PASS}
     db_admin:
         image: phpmyadmin
         environment:
             - SERVICE_FQDN_DB_ADMIN_80
-            - PMA_HOST=db
+            - PMA_HOST=${DB_HOST}
         depends_on:
             - db
 
