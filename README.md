@@ -12,8 +12,12 @@ Create an `.env` file before starting the containers with this info:
 
 ```bash
 DB_PASS_ROOT=something
+
 DB_USER=you
 DB_PASS=like
+
+DB_HOST=to
+DB_NAME=set
 ```
 
 ## Usage
