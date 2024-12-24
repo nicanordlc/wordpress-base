@@ -25,6 +25,11 @@ docker compose up -d
 # db admin: localhost:9001
 ```
 
-After install is OK do a `git checkout .` so you clean default things
-installed by default (it's okay).
+After install is OK run commands below so you clean default things
+installed by wordpress (it's okay).
+
+```bash
+git checkout .
+git clean -df
+```
 
