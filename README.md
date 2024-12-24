@@ -25,3 +25,6 @@ docker compose up -d
 # db admin: localhost:9001
 ```
 
+After install is OK do a `git checkout .` so you clean default things
+installed by default (it's okay).
+
