@@ -1,4 +1,9 @@
 services:
+    db_admin:
+        image: phpmyadmin
+        environment:
+            - SERVICE_FQDN_DB_ADMIN_80
+            - PMA_HOST=${DB_HOST}
     wordpress:
         image: wordpress
         environment:
@@ -12,11 +17,6 @@ services:
             - wp-dconf/:/usr/local/etc/php/conf.d
         depends_on:
             - db_admin
-    db_admin:
-        image: phpmyadmin
-        environment:
-            - SERVICE_FQDN_DB_ADMIN_80
-            - PMA_HOST=${DB_HOST}
 
 volumes:
     db_data:
