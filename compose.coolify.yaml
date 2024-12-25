@@ -11,25 +11,13 @@ services:
             - wp-content:/var/www/html/wp-content
             - wp-dconf/:/usr/local/etc/php/conf.d
         depends_on:
-            - db
             - db_admin
-    db:
-        image: mariadb
-        volumes:
-            - db_data:/var/lib/mysql
-        environment:
-            - MARIADB_ROOT_PASSWORD=${DB_PASS_ROOT}
-            - MARIADB_DATABASE=${DB_NAME}
-            - MARIADB_USER=${DB_USER}
-            - MARIADB_PASSWORD=${DB_PASS}
     db_admin:
         image: phpmyadmin
         environment:
             - SERVICE_FQDN_DB_ADMIN_80
             - PMA_HOST=${DB_HOST}
         depends_on:
-            - db
 
 volumes:
     db_data:
-
