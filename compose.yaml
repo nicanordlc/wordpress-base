@@ -1,6 +1,15 @@
 services:
+    db_admin:
+        image: phpmyadmin
+        ports:
+            - 9001:80
+        environment:
+            - PMA_HOST=db
+            - PMA_USER=${DB_USER}
+            - PMA_PASSWORD=${DB_PASS}
     wordpress:
-        image: wordpress
+        image: custom-tours
+        build: .
         ports:
             - 9000:80
         environment:
@@ -11,9 +20,6 @@ services:
         volumes:
             - ./wp-content:/var/www/html/wp-content
             - ./wp-dconf/:/usr/local/etc/php/conf.d
-        depends_on:
-            - db
-            - db_admin
     db:
         image: mariadb
         volumes:
@@ -23,16 +29,6 @@ services:
             - MARIADB_DATABASE=wordpress
             - MARIADB_USER=${DB_USER}
             - MARIADB_PASSWORD=${DB_PASS}
-    db_admin:
-        image: phpmyadmin
-        ports:
-            - 9001:80
-        environment:
-            - PMA_HOST=db
-            - PMA_USER=${DB_USER}
-            - PMA_PASSWORD=${DB_PASS}
-        depends_on:
-            - db
 
 volumes:
     db_data:

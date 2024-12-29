@@ -5,18 +5,14 @@ services:
             - SERVICE_FQDN_DB_ADMIN_80
             - PMA_HOST=${DB_HOST}
     wordpress:
-        image: wordpress
+        image: custom-tours
+        build: .
         environment:
             - SERVICE_FQDN_WORDPRESS_80
             - WORDPRESS_DB_HOST=${DB_HOST}
             - WORDPRESS_DB_USER=${DB_USER}
             - WORDPRESS_DB_PASSWORD=${DB_PASS}
             - WORDPRESS_DB_NAME=${DB_NAME}
-        volumes:
-            - ./wp-content:/var/www/html/wp-content
-            - wp-dconf/:/usr/local/etc/php/conf.d
-        depends_on:
-            - db_admin
 
 volumes:
     db_data:
